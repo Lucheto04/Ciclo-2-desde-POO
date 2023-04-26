@@ -1,0 +1,15 @@
+Programacion orientada a OBJETOS!!!
+
+Paradigma:
+Es una estructura mental, o un modelo y o manera de pensar, es decir una filosofia de nuestra manera de actuar.
+
+Pilares de la POO:
+
+Abstraccion, Herencia, Polimorfismo y Encapsulamiento. IMPORTANTE!!!
+
+Clase
+Atributos
+Metodos
+Instacias
+Objetos
+

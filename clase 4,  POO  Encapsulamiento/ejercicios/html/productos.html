@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap 5/bootstrap.min.css">
+    <script src="/bootstrap 5/bootstrap.bundle.min.js" defer></script>
+    <script src="../js/productos.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3 d-flex flex-column mt-3" style="border: 1px solid black; background-color: rgb(131, 136, 134);">
+                <div class="mb-3">
+                    <label for="codigo">CD: </label>
+                    <input type="number" name="codigo" id="codigo" placeholder="Codigo Producto">
+                </div>
+                <div class="mb-3">
+                    <label for="precio">PB: </label>
+                    <input type="number" name="precio" id="precio" placeholder="precio Producto">
+                </div>
+                <div class="mb-3">
+                    <label for="cantidadB">CB: </label>
+                    <input type="number" name="cantidadB" id="cantidadB" placeholder="Cantidad en Bodega">
+                </div>
+                <div class="mb-3">
+                    <label for="cantMB">CMB: </label>
+                    <input type="number" name="cantMB" id="cantMB" placeholder="Cantidad min Bodega">
+                </div>
+                <div class="mb-3">
+                    <button type="button" id="mostrar" class="btn btn-success" onclick="imprimir()">Agregar</button>
+                </div>
+            </div>
+            <div class="tarjetas row d-flex gap-3" id="tarjetas">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

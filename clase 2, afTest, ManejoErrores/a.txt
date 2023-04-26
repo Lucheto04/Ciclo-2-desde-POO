@@ -1,0 +1,14 @@
+                                    DATE!!!!!!
+
+
+nos devuelve la cantidad de milisegundos que hay desde 1970 hasta la fecha de hoy
+
+
+
+
+                                MANEJO DE ERRORES
+
+COMO PODEMOS GESTIONAR LOS ERRORES CON JAVASCRIPT
+
+
+

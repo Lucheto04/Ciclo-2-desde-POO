@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap 5/bootstrap.min.css">
+    <script src="/bootstrap 5/bootstrap.bundle.min.js" defer></script>
+    <script src="../js/ej2.js" defer></script>
+    <title>Ejercicio Recibo del agua</title>
+</head>
+<body>
+    <div class="container-fluid text-center">
+        <div id="title">
+            <h1>Recibo del agua</h1>
+        </div>
+
+        <!--Creamos el formulario-->
+        <form action="" class="d-flex justify-content-around mt-5">
+            <label for="codigo">Codigo: </label>
+            <input type="text" name="codigo" id="codigo">
+
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre">
+
+            <label for="estrato">Estrato (1, 2, 3, 4, 5): </label>
+            <input type="number" min="1" max="5" name="estrato" id="estrato">
+
+            <label for="consumo">Consumo: </label>
+            <input type="text" name="consumo" id="consumo">
+
+            <button type="button" class="btn btn-dark">mostrar</button>
+        </form>
+        <!--Creamos la tabla-->
+        <table class="table table-dark table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Valor a Pagar</th>
+                </tr>
+            </thead>
+            <tbody id="mostrar">
+                
+            </tbody>
+
+        </table>
+    </div>
+</body>
+</html>
