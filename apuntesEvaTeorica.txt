@@ -1,0 +1,21 @@
+¿Por qué se llama JavaScript?
+
+Pero a medida que evolucionaba, JavaScript se convirtió en un lenguaje completamente independiente con su propia especificación llamada ECMAScript, y ahora no tiene ninguna relación con Java.
+
+
+Estructuras condicionales??
+
+if, else if, else y switch
+
+Estructuras Repetitivas?
+
+for, while, do while y forEach
+
+Funciones?
+
+Funciones declarativas, Funciones expresivas (const Function), arrow functions
+
+Arrays!
+
+Metodos:
+Every(): El método every() itera a través de cada elemento del array y llama a una función de devolución de llamada (callback) proporcionada por el usuario en cada iteración. 
