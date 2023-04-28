@@ -19,3 +19,13 @@ Arrays!
 
 Metodos:
 Every(): El método every() itera a través de cada elemento del array y llama a una función de devolución de llamada (callback) proporcionada por el usuario en cada iteración. 
+
+unshift()
+Agrega uno o más elementos al principio del array y devuelve la nueva longitud del array.
+
+pop(): elimina el ultimo elemento y lo devuelve
+
+shift(): elimina el primer elemento y lo devuelve
+
+indexOf(): devuelve el valor del elemento si lo encuentra dentro del array, de no encontrarlo retorna -1
+
