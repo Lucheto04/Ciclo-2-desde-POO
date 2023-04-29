@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap 5/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="/bootstrap 5/bootstrap.bundle.min.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    <title>Inventario Productos</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="header">
+            <h1 class="text-center">Inventario de Productos</h1>
+        </div>
+
+        <div class="miFormulario">
+                <div class="row m-2">
+                    <div class="col-2" id="formulario">
+                        <form action="datos" class="formulario d-flex flex-column m-3">
+                            <label for="codigo">Codigo: </label>
+                            <input type="text" name="codigo" id="codigo" placeholder="cd del producto">
+
+                            <label for="descripcion">Descripcion: </label>
+                            <input type="text" name="descripcion" id="descripcion" placeholder="detalle del pro">
+
+                            <label for="preCompra">Precio Compra: </label>
+                            <input type="number" min="1" name="preCompra" id="preCompra" placeholder="precio Compra">
+
+                            <label for="preVenta">Precio Venta: </label>
+                            <input type="number" min="1" name="preVenta" id="preVenta" placeholder="precio de Venta">
+
+                            <label for="cantBodega">Ct bodega: </label>
+                            <input type="number" min="1" max="25" name="cantBodega" id="cantBodega" placeholder="cantidad en bodega">
+
+                            <label for="descuento">Porcentaje Descuento</label>
+                            <input type="text" name="descuento" id="descuento" placeholder="Ingrese el % de descuento">
+
+                            <label for="taPrendas">Talla prendas de Vestir: </label>
+                            <input type="text" name="taPrendas" id="taPrendas" placeholder="Tallas: S, M, L, e.t.c." disabled>
+
+                            <label for="taCalzado">Talla Calzado: </label>
+                            <input type="text" name="taCalzado" id="taCalzado" placeholder="Tallas númericas" disabled>
+
+                            <button type="button" class="btn btn-dark mt-2">Mostrar</button>
+                        </form>
+                        <p>Cantidad minima en bodega: <span id="cantMnBodega">5</span> </p>
+                        <p>Cantidad maxima de inventario: <span id="cantMxInventario">25</span></p>
+                    </div>
+                    <div class="col">
+                        <div class="tarjetas row d-flex" id="tarjetas">
+                            <div class="card ms-3 mt-6 col-2">
+                                <div class="card-body">
+                                    <h4 class="text-center">Diseño Cards</h3>
+                                    <p>Descripcion</p>
+                                    <p>preCompra</p>
+                                    <p>preVenta</p>
+                                    <p>cantBodega</p>
+                                    <p>%Descuento</p>
+                                    <p>%Descuento</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

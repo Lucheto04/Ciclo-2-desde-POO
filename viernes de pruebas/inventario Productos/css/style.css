@@ -1,0 +1,8 @@
+.container-fluid {
+    height: 100vh;
+    background-color: bisque;
+}
+#formulario {
+    background-color: rgba(94, 93, 93, 0.524);
+    border-radius: 5px;
+}
