@@ -110,43 +110,33 @@ class Producto {
         return this.#descuento
     }
 
-    mostrar() {
-        codigo = document.querySelector("#codigo").value;
-        descripcion = document.querySelector("#descripcion").value;
-        preCompra = document.querySelector("#preCompra").value;
-        preVenta = document.querySelector("#preVenta").value;
-        cantBod = document.querySelector("#cantBod").value;
-        cantMnBod = document.querySelector("#cantMnBod").value;
-        preCompra = document.querySelector("#preCompra").value;
-        preVenta = document.querySelector("#preVenta").value;
-        descuento = document.querySelector("#descuento").value;
-        talla = document.querySelector("#taPrendas").value;
-        if (this.#cantBod < 5){
-            tarjeta += /*HTML*/
-            `
-            <div class="card ms-3 mt-6 col-2" style="background-color: rgba(198, 175, 175, 0.7);">
-                <div class="card-body">
-                    <h4 class="text-center">Solicitar Pedido</h3>
-                    <p>${codigo}</p>
-                    <p>${descripcion}</p>
-                    <p>${preCompra}</p>
-                    <p>${preVenta}</p>
-                    <p>${cantBodega}</p>
-                    <p>${Descuento}</p>
-                    <p>${talla}</p>
-                    <p>No hay suficiente stock del producto!!</p>
-                </div>
-            </div>
-            `
-            return true
-        } else {
-            return false
-        }
-    }
 }
 
-
 class PrendasVestir extends Producto {
+    #talla
+    #planchado
+    constructor(codigo, descripcion, preCompra, preVenta, cantBod, cantMnBod, cantMxInv, descuento, talla, planchado) {
+        super(codigo, descripcion, preCompra, preVenta, cantBod, cantMnBod, cantMxInv, descuento);
+        this.#talla = talla;
+        this.#planchado = planchado;
+    }
+
+    set talla(newTalla){
+        this.#talla = newTalla
+    }
+
+    get talla(){
+        return this.#talla
+    }
+
+    set planchado(newPlanchado) {
+        this.#planchado = newPlanchado;
+    }
+    get planchado(){
+        return this.#planchado
+    }
+}
+class Calzado extends Producto {
     #talla
     constructor(codigo, descripcion, preCompra, preVenta, cantBod, cantMnBod, cantMxInv, descuento, talla) {
         super(codigo, descripcion, preCompra, preVenta, cantBod, cantMnBod, cantMxInv, descuento);
@@ -161,6 +151,9 @@ class PrendasVestir extends Producto {
         return this.#talla
     }
 }
+
+
+
 
 /*
 let tarjeta = "";

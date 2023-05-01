@@ -42,7 +42,7 @@ class Producto {
 let tarjetas = "";
 let datos = Array();
 let tarjeta = "";
- 
+
 const imprimir =  () => {
     codigo = document.querySelector("#codigo").value;
     precio = document.querySelector("#precio").value;
