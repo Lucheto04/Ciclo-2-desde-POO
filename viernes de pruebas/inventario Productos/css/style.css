@@ -1,8 +1,13 @@
 .container-fluid {
-    height: 100vh;
+    height: 1000vh;
     background-color: bisque;
 }
 #formulario {
     background-color: rgba(94, 93, 93, 0.524);
+    border: 1px double black;
     border-radius: 5px;
+    width: 20%;
+}
+.elegir {
+    color: brown;
 }

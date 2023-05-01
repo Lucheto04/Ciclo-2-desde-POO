@@ -1,3 +1,39 @@
+const taPrendas = document.querySelector(".taPrendas");
+const taPrendas1 = document.querySelector("#taPrendas");
+const taCalzado = document.querySelector(".taCalzado");
+const taCalzado1 = document.querySelector("#taCalzado");
+const llenarDatos = document.querySelector(".llenarDatos");
+const infoEscondida = () => {
+    taPrendas.style.display = "none";
+    taPrendas1.style.display = "none";
+    taCalzado.style.display = "none";
+    taCalzado1.style.display = "none";
+    llenarDatos.style.display = "none";
+
+    let checkPrendas = document.querySelector("#prVestir");
+    checkPrendas.addEventListener("change", elegirTipoR);
+
+    let checkCalzado = document.querySelector("#calzado");
+    checkCalzado.addEventListener("change", elegirTipoR);
+}
+const elegirTipoR = () => {
+    let checkPrendas = document.querySelector("#prVestir");
+    let checkCalzado = document.querySelector("#calzado");
+    if (checkPrendas.checked) {
+        llenarDatos.style.display = "block";
+        taPrendas.style.display = "block";
+        taPrendas1.style.display = "block";
+        taCalzado.style.display = "none";
+        taCalzado1.style.display = "none";
+    } else if (checkCalzado.checked) {
+        llenarDatos.style.display = "block";
+        taCalzado.style.display = "block";
+        taCalzado1.style.display = "block";
+        taPrendas.style.display = "none";
+        taPrendas1.style.display = "none";
+    }
+}
+
 class Producto {
     #codigo
     #descripcion

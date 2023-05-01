@@ -10,61 +10,78 @@
     <script src="./js/main.js" defer></script>
     <title>Inventario Productos</title>
 </head>
-<body>
+<body onload="infoEscondida(), elegirTipoR()">
     <div class="container-fluid">
         <div class="header">
             <h1 class="text-center">Inventario de Productos</h1>
         </div>
 
-        <div class="miFormulario">
-                <div class="row m-2">
-                    <div class="col-2" id="formulario">
-                        <form action="datos" class="formulario d-flex flex-column m-3">
-                            <label for="codigo">Codigo: </label>
-                            <input type="text" name="codigo" id="codigo" placeholder="cd del producto">
-
-                            <label for="descripcion">Descripcion: </label>
-                            <input type="text" name="descripcion" id="descripcion" placeholder="detalle del pro">
-
-                            <label for="preCompra">Precio Compra: </label>
-                            <input type="number" min="1" name="preCompra" id="preCompra" placeholder="precio Compra">
-
-                            <label for="preVenta">Precio Venta: </label>
-                            <input type="number" min="1" name="preVenta" id="preVenta" placeholder="precio de Venta">
-
-                            <label for="cantBodega">Ct bodega: </label>
-                            <input type="number" min="1" max="25" name="cantBodega" id="cantBodega" placeholder="cantidad en bodega">
-
-                            <label for="descuento">Porcentaje Descuento</label>
-                            <input type="text" name="descuento" id="descuento" placeholder="Ingrese el % de descuento">
-
-                            <label for="taPrendas">Talla prendas de Vestir: </label>
-                            <input type="text" name="taPrendas" id="taPrendas" placeholder="Tallas: S, M, L, e.t.c." disabled>
-
-                            <label for="taCalzado">Talla Calzado: </label>
-                            <input type="text" name="taCalzado" id="taCalzado" placeholder="Tallas númericas" disabled>
-
-                            <button type="button" class="btn btn-dark mt-2" onclick="mostrar()">Mostrar</button>
-                        </form>
-                        <p>Cantidad minima en bodega: <span id="cantMnBodega">5</span> </p>
-                        <p>Cantidad maxima de inventario: <span id="cantMxInventario">25</span></p>
-                    </div>
-                    <div class="col">
-                        <div class="tarjetas row d-flex" id="tarjetas">
-                            <div class="card ms-3 mt-6 col-2" style="background-color: rgba(198, 175, 175, 0.7);">
-                                <div class="card-body">
-                                    <h4 class="text-center">Diseño Cards</h3>
-                                    <p>Descripcion</p>
-                                    <p>preCompra</p>
-                                    <p>preVenta</p>
-                                    <p>cantBodega</p>
-                                    <p>%Descuento</p>
-                                    <p>%Descuento</p>
-                                </div>
+        <div class="part1">
+            <div class="row m-2">
+                <div class="col-2" id="formulario">
+                    <form action="datos" class="formulario d-flex flex-column ">
+                        <div class="seleccionar d-flex gap-3">
+                            <div class="elegir">
+                                <label for="prVestir">Prendas Vestir</label>
+                                <input type="radio" name="tipoRopa" id="prVestir">
                             </div>
+                            <div class="elegir">
+                                <label for="calzado">Calzado</label>
+                                <input type="radio" name="tipoRopa" id="calzado">
+                            </div>
+                        </div>
+                        <div class="llenarDatos">
+                            <label for="codigo">Codigo: </label>
+                            <input type="text" class="inputs" name="codigo" id="codigo" placeholder="cd del producto">
+                            <label for="descripcion">Descripcion: </label>
+                            <input type="text" class="inputs" name="descripcion" id="descripcion" placeholder="detalle del pro">
+                            <label for="preCompra">Precio Compra: </label>
+                            <input type="number" class="inputs" min="1" name="preCompra" id="preCompra" placeholder="precio Compra">
+                            <label for="preVenta">Precio Venta: </label>
+                            <input type="number" class="inputs" min="1" name="preVenta" id="preVenta" placeholder="precio de Venta">
+                            <label for="cantBodega">Ct bodega: </label>
+                            <input type="number" class="inputs" min="1" name="cantBodega" id="cantBodega" placeholder="cantidad en bodega">
+                            <label for="descuento">Porcentaje Descuento</label>
+                            <input type="text" class="inputs" name="descuento" id="descuento" placeholder="Ingrese el % de descuento">
+                            <label for="taPrendas" class="taPrendas">Talla prendas de Vestir: </label>
+                            <input type="text" class="inputs" name="taPrendas" id="taPrendas" placeholder="Tallas: S, M, L, e.t.c.">
+                            <label for="taCalzado" class="taCalzado">Talla Calzado: </label>
+                            <input type="text" class="inputs" name="taCalzado" id="taCalzado" placeholder="Tallas númericas">
+                            <button type="button" class="btn btn-dark mt-2" onclick="mostrar()">Mostrar</button>
+                        </div>
+                    </form>
+                    <p>Cantidad minima en bodega: <span id="cantMnBodega">5</span> </p>
+                    <p>Cantidad maxima de inventario: <span id="cantMxInventario">25</span></p>
+                </div>
+                <div class="col">
+                    <h2>Tabla estadisticas</h2>
+                    <table class="table table-success table-striped-columns">
+                        <thead>
+                            <tr>
+                                <th>a</th>
+                                <th>b</th>
+                                <th>c</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla1"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="seccionCards">
+                <div class="tarjetas row d-flex" id="tarjetas">
+                    <div class="card ms-3 mt-6 col-2" style="background-color: rgba(198, 175, 175, 0.7);">
+                        <div class="card-body">
+                            <h4 class="text-center">Diseño Cards</h3>
+                            <p>Descripcion</p>
+                            <p>preCompra</p>
+                            <p>preVenta</p>
+                            <p>cantBodega</p>
+                            <p>%Descuento</p>
+                            <p>%Descuento</p>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </body>
