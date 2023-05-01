@@ -29,3 +29,6 @@ shift(): elimina el primer elemento y lo devuelve
 
 indexOf(): devuelve el valor del elemento si lo encuentra dentro del array, de no encontrarlo retorna -1
 
+
+aaa
+
