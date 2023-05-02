@@ -173,6 +173,7 @@ class Calzado extends Producto {
 }
 
 let tarjetas = "";
+let tabla = "";
 let datos = Array();
 const imprimir = function () {
     let codigo = document.querySelector("#codigo").value;
@@ -191,11 +192,11 @@ const imprimir = function () {
     if (checkPrendas.checked) {
         const objetos = new PrendasVestir(codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
         datos.push(objetos);
-        console.log(datos);
         let porcDescuento = descuento / 100;
         let op1 = (cantMxInv - cantBodega) * preCompra;
         let totalPagar = op1 - (op1 * porcDescuento);
-        if (objetos.solPedido()) {
+        console.log(objetos.solPedido());
+        if (cantBodega < cantMnBod) {
             tarjetas += /*html*/
             `
             <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
@@ -212,7 +213,7 @@ const imprimir = function () {
                 </div>
             </div>
             `
-        } else {
+        } else if (cantBodega > cantMnBod) {
             tarjetas += /*html*/
             `
             <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
@@ -244,11 +245,11 @@ const imprimir = function () {
     } else if (checkCalzado.checked) {
         const objetos = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
         datos.push(objetos);
-        console.log(datos);
         let porcDescuento = descuento / 100;
         let op1 = (cantMxInv - cantBodega) * preCompra;
         let totalPagar = op1 - (op1 * porcDescuento);
-        if (objetos.solPedido()) {
+        console.log(objetos.solPedido());
+        if (cantBodega < cantMnBod) {
             tarjetas += /*html*/
             `
             <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
@@ -265,7 +266,7 @@ const imprimir = function () {
                 </div>
             </div>
             `
-        } else {
+        } else if (cantBodega > cantMnBod) {
             tarjetas += /*html*/
             `
             <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
@@ -293,9 +294,12 @@ const imprimir = function () {
         descuento = document.querySelector("#descuento").value = "";
         taCalzado = document.querySelector("#taCalzado").value = "";
         planchado = document.querySelector("#planchado").value = "";
-
+        console.log(datos);
     }
 }
-
+const productoMasBodega = datos.reduce((productoActual, producto) => {
+    return producto.cantBodega > productoActual.cantBodega ? producto : productoActual;
+}, datos[0]);
+console.log(productoMasBodega);
 let boton = document.querySelector("#boton");
 boton.addEventListener("click", imprimir);
