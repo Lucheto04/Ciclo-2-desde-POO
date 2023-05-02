@@ -315,9 +315,9 @@ const imprimir = function () {
     const productoMasBodega = datos.reduce((productoActual, producto) => {
         if (producto.cantBodega > productoActual.cantBodega) {
             return producto
-        } else {     
+        } else     
             return productoActual;
-        }
+        
     }, datos[0]);
     console.log(productoMasBodega);
 }

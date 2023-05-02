@@ -12,3 +12,7 @@
 .elegir {
     color: brown;
 }
+.llenarDatos {
+    display: flex I !important  ;
+    flex-direction: column;
+}
