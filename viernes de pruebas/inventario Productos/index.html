@@ -34,24 +34,32 @@
                             <label for="codigo">Codigo: </label>
                             <input type="text" class="inputs" name="codigo" id="codigo" placeholder="cd del producto">
                             <label for="descripcion">Descripcion: </label>
-                            <input type="text" class="inputs" name="descripcion" id="descripcion" placeholder="detalle del pro">
+                            <input type="text" class="inputs" name="descripcion" id="descripcion" placeholder="detalle del producto">
                             <label for="preCompra">Precio Compra: </label>
                             <input type="number" class="inputs" min="1" name="preCompra" id="preCompra" placeholder="precio Compra">
                             <label for="preVenta">Precio Venta: </label>
                             <input type="number" class="inputs" min="1" name="preVenta" id="preVenta" placeholder="precio de Venta">
                             <label for="cantBodega">Ct bodega: </label>
                             <input type="number" class="inputs" min="1" name="cantBodega" id="cantBodega" placeholder="cantidad en bodega">
+                            <label for="cantMnBodega">Ct min B: </label>
+                            <input type="number" class="inputs" min="1" name="cantMnBodega" id="cantMnBodega" placeholder="cantidad minima bodega">
+                            <label for="cantMxInv">Ct max INV: </label>
+                            <input type="number" class="inputs" min="1" name="cantMxInv" id="cantMxInv" placeholder="cantidad max inventario">
                             <label for="descuento">Porcentaje Descuento</label>
                             <input type="text" class="inputs" name="descuento" id="descuento" placeholder="Ingrese el % de descuento">
                             <label for="taPrendas" class="taPrendas">Talla prendas de Vestir: </label>
                             <input type="text" class="inputs" name="taPrendas" id="taPrendas" placeholder="Tallas: S, M, L, e.t.c.">
                             <label for="taCalzado" class="taCalzado">Talla Calzado: </label>
                             <input type="text" class="inputs" name="taCalzado" id="taCalzado" placeholder="Tallas númericas">
-                            <button type="button" class="btn btn-dark mt-2" onclick="mostrar()">Mostrar</button>
+                            <label for="planchado" class="planchado">Permite Planchado?</label>
+                            <select name="planchado" id="planchado">
+                                <option value=""></option>
+                                <option value="si">Si</option>
+                                <option value="no">No</option>
+                            </select>
+                            <button type="button" class="btn btn-dark mt-2" id="boton">Mostrar</button>
                         </div>
                     </form>
-                    <p>Cantidad minima en bodega: <span id="cantMnBodega">5</span> </p>
-                    <p>Cantidad maxima de inventario: <span id="cantMxInventario">25</span></p>
                 </div>
                 <div class="col">
                     <h2>Tabla estadisticas</h2>
@@ -69,14 +77,14 @@
             </div>
             <div class="seccionCards">
                 <div class="tarjetas row d-flex" id="tarjetas">
-                    <div class="card ms-3 mt-6 col-2" style="background-color: rgba(198, 175, 175, 0.7);">
+                    <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
                         <div class="card-body">
                             <h4 class="text-center">Diseño Cards</h3>
+                            <p>Codigo</p>
                             <p>Descripcion</p>
                             <p>preCompra</p>
                             <p>preVenta</p>
                             <p>cantBodega</p>
-                            <p>%Descuento</p>
                             <p>%Descuento</p>
                         </div>
                     </div>

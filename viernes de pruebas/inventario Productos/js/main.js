@@ -2,12 +2,16 @@ const taPrendas = document.querySelector(".taPrendas");
 const taPrendas1 = document.querySelector("#taPrendas");
 const taCalzado = document.querySelector(".taCalzado");
 const taCalzado1 = document.querySelector("#taCalzado");
+const planchado = document.querySelector(".planchado");
+const planchado1 = document.querySelector("#planchado");
 const llenarDatos = document.querySelector(".llenarDatos");
 const infoEscondida = () => {
     taPrendas.style.display = "none";
     taPrendas1.style.display = "none";
     taCalzado.style.display = "none";
     taCalzado1.style.display = "none";
+    planchado.style.display = "none";
+    planchado1.style.display = "none";
     llenarDatos.style.display = "none";
 
     let checkPrendas = document.querySelector("#prVestir");
@@ -25,12 +29,16 @@ const elegirTipoR = () => {
         taPrendas1.style.display = "block";
         taCalzado.style.display = "none";
         taCalzado1.style.display = "none";
+        planchado.style.display = "block";
+        planchado1.style.display = "block";
     } else if (checkCalzado.checked) {
         llenarDatos.style.display = "block";
         taCalzado.style.display = "block";
         taCalzado1.style.display = "block";
         taPrendas.style.display = "none";
         taPrendas1.style.display = "none";
+        planchado.style.display = "none";
+        planchado1.style.display = "none";
     }
 }
 
@@ -110,6 +118,18 @@ class Producto {
         return this.#descuento
     }
 
+    solPedido () {
+        if (this.#cantBod < this.#cantMnBod)
+            return true;
+        else
+            return false;
+    }
+
+    totalPagar () {
+
+    }
+
+    mostrar () {}
 }
 
 class PrendasVestir extends Producto {
@@ -152,43 +172,74 @@ class Calzado extends Producto {
     }
 }
 
-
-
-
-/*
-let tarjeta = "";
-let infoMostrar = Array();
-const imprimir =  () => {
-    codigo = document.querySelector("#codigo").value;
-    descripcion = document.querySelector("#descripcion").value;
-    preCompra = document.querySelector("#preCompra").value;
-    preVenta = document.querySelector("#preVenta").value;
-    cantBod = document.querySelector("#cantBod").value;
-    cantMnBod = document.querySelector("#cantMnBod").value;
-    preCompra = document.querySelector("#preCompra").value;
-    preVenta = document.querySelector("#preVenta").value;
-    descuento = document.querySelector("#descuento").value;
-    talla = document.querySelector("#taPrendas").value;
-    if (cantBod < 5){
-        tarjeta += /*HTML*//* <<<<<<<<<<<<<<------------------------------------------------
-        `
-        <div class="card ms-3 mt-6 col-2" style="background-color: rgba(198, 175, 175, 0.7);">
-            <div class="card-body">
-                <h4 class="text-center">Solicitar Pedido</h3>
-                <p>${codigo}</p>
-                <p>${descripcion}</p>
-                <p>${preCompra}</p>
-                <p>${preVenta}</p>
-                <p>${cantBodega}</p>
-                <p>${Descuento}</p>
-                <p>${talla}</p>
-                <p>No hay suficiente stock del producto!!</p>
+let tarjetas = "";
+let datos = Array();
+const imprimir = function () {
+    let codigo = document.querySelector("#codigo").value;
+    let descripcion = document.querySelector("#descripcion").value;
+    let preCompra = document.querySelector("#preCompra").value;
+    let preVenta = document.querySelector("#preVenta").value;
+    let cantBodega = document.querySelector("#cantBodega").value;
+    let cantMnBod = document.querySelector("#cantMnBodega").value;
+    let cantMxInv = document.querySelector("#cantMxInv").value;
+    let descuento = document.querySelector("#descuento").value;
+    let taPrendas = document.querySelector("#taPrendas").value;
+    let planchado = document.querySelector("#planchado").value;
+    let checkPrendas = document.querySelector("#prVestir");
+    let checkCalzado = document.querySelector("#calzado");
+    if (checkPrendas.checked) {
+        const objetos = new PrendasVestir(codigo, descripcion,preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
+        datos.push(objetos);
+        console.log(datos);
+        let porcDescuento = descuento / 100;
+        let op1 = (cantMxInv - cantBodega) * preCompra;
+        let totalPagar = op1 - (op1 * porcDescuento);
+        if (objetos.solPedido()) {
+            tarjetas += /*html*/
+            `
+            <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
+                <div class="card-body">
+                    <h4 class="text-center">Solicitar pedido!!!!</h3>
+                    <p>Tipo: Prendas de Vestir</p>
+                    <p>Codigo: ${codigo}</p>
+                    <p>Descripcion: ${descripcion}</p>
+                    <p>preCompra: ${preCompra}</p>
+                    <p>cantBodega: ${cantBodega}</p>
+                    <p>Descuento: ${descuento}%</p>
+                    <p>pagar al proveedor: ${totalPagar}</p>
+                </div>
             </div>
-        </div>
-        `
-    } else {
-        return false
+            `
+        } else {
+            tarjetas += /*html*/
+            `
+            <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
+                <div class="card-body">
+                    <h4 class="text-center">Añadido al carrito</h3>
+                    <p>Tipo: Prendas de Vestir</p>
+                    <p>Codigo: ${codigo}</p>
+                    <p>Descripcion: ${descripcion}</p>
+                    <p>precio compra: ${preCompra}</p>
+                    <p>precio venta: ${preVenta}</p>
+                    <p>Planchado: ${planchado}</p>
+                    <p>Coste: ${preVenta}</p>
+                </div>
+            </div>
+            `;
+        }
+        document.querySelector("#tarjetas").innerHTML = tarjetas;
+
+        codigo = document.querySelector("#codigo").value = "";
+        descripcion = document.querySelector("#descripcion").value = "";
+        preCompra = document.querySelector("#preCompra").value = "";
+        preVenta = document.querySelector("#preVenta").value = "";
+        cantBodega = document.querySelector("#cantBodega").value = "";
+        cantMnBod = document.querySelector("#cantMnBodega").value = "";
+        cantMxInv = document.querySelector("#cantMxInv").value = "";
+        descuento = document.querySelector("#descuento").value = "";
+        taPrendas = document.querySelector("#taPrendas").value = "";
+        planchado = document.querySelector("#planchado").value = "";
     }
-    document.querySelector("#tarjetas").innerHTML = tarjeta;
 }
----------------------------------------------->>>>>>>>>>*/
+    let boton = document.querySelector("#boton");
+    boton.addEventListener("click", imprimir);
