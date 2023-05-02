@@ -184,11 +184,12 @@ const imprimir = function () {
     let cantMxInv = document.querySelector("#cantMxInv").value;
     let descuento = document.querySelector("#descuento").value;
     let taPrendas = document.querySelector("#taPrendas").value;
+    let taCalzado = document.querySelector("#taCalzado").value;
     let planchado = document.querySelector("#planchado").value;
     let checkPrendas = document.querySelector("#prVestir");
     let checkCalzado = document.querySelector("#calzado");
     if (checkPrendas.checked) {
-        const objetos = new PrendasVestir(codigo, descripcion,preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
+        const objetos = new PrendasVestir(codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
         datos.push(objetos);
         console.log(datos);
         let porcDescuento = descuento / 100;
@@ -205,6 +206,7 @@ const imprimir = function () {
                     <p>Descripcion: ${descripcion}</p>
                     <p>preCompra: ${preCompra}</p>
                     <p>cantBodega: ${cantBodega}</p>
+                    <p>Cant min Bodega: ${cantMnBod}</p>
                     <p>Descuento: ${descuento}%</p>
                     <p>pagar al proveedor: ${totalPagar}</p>
                 </div>
@@ -239,7 +241,61 @@ const imprimir = function () {
         descuento = document.querySelector("#descuento").value = "";
         taPrendas = document.querySelector("#taPrendas").value = "";
         planchado = document.querySelector("#planchado").value = "";
+    } else if (checkCalzado.checked) {
+        const objetos = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
+        datos.push(objetos);
+        console.log(datos);
+        let porcDescuento = descuento / 100;
+        let op1 = (cantMxInv - cantBodega) * preCompra;
+        let totalPagar = op1 - (op1 * porcDescuento);
+        if (objetos.solPedido()) {
+            tarjetas += /*html*/
+            `
+            <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
+                <div class="card-body">
+                    <h4 class="text-center">Solicitar pedido!!!!</h3>
+                    <p>Tipo: Calzado</p>
+                    <p>Codigo: ${codigo}</p>
+                    <p>Descripcion: ${descripcion}</p>
+                    <p>preCompra: ${preCompra}</p>
+                    <p>cantBodega: ${cantBodega}</p>
+                    <p>Cant min Bodega: ${cantMnBod}</p>
+                    <p>Descuento: ${descuento}%</p>
+                    <p>pagar al proveedor: ${totalPagar}</p>
+                </div>
+            </div>
+            `
+        } else {
+            tarjetas += /*html*/
+            `
+            <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
+                <div class="card-body">
+                    <h4 class="text-center">Añadido al carrito</h3>
+                    <p>Tipo: Calzado</p>
+                    <p>Codigo: ${codigo}</p>
+                    <p>Descripcion: ${descripcion}</p>
+                    <p>precio compra: ${preCompra}</p>
+                    <p>precio venta: ${preVenta}</p>
+                    <p>Coste: ${preVenta}</p>
+                </div>
+            </div>
+            `;
+        }
+        document.querySelector("#tarjetas").innerHTML = tarjetas;
+
+        codigo = document.querySelector("#codigo").value = "";
+        descripcion = document.querySelector("#descripcion").value = "";
+        preCompra = document.querySelector("#preCompra").value = "";
+        preVenta = document.querySelector("#preVenta").value = "";
+        cantBodega = document.querySelector("#cantBodega").value = "";
+        cantMnBod = document.querySelector("#cantMnBodega").value = "";
+        cantMxInv = document.querySelector("#cantMxInv").value = "";
+        descuento = document.querySelector("#descuento").value = "";
+        taCalzado = document.querySelector("#taCalzado").value = "";
+        planchado = document.querySelector("#planchado").value = "";
+
     }
 }
-    let boton = document.querySelector("#boton");
-    boton.addEventListener("click", imprimir);
+
+let boton = document.querySelector("#boton");
+boton.addEventListener("click", imprimir);
