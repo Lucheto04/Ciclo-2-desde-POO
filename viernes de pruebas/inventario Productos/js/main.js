@@ -1,3 +1,4 @@
+//Variables para generar el formulario solicitado, con la informacion visible e invisible dependiendo el check del usuario en los imputs tipo radio
 const taPrendas = document.querySelector(".taPrendas");
 const taPrendas1 = document.querySelector("#taPrendas");
 const taCalzado = document.querySelector(".taCalzado");
@@ -41,7 +42,8 @@ const elegirTipoR = () => {
         planchado1.style.display = "none";
     }
 }
-
+//-----------------------------------------------------------------------------------------------------------
+//Creamos las clases
 class Producto {
     #codigo
     #descripcion
@@ -172,9 +174,16 @@ class Calzado extends Producto {
     }
 }
 
+// Cierre de las clases
+//------------------------------------------------------------------------------
+// Contadores y variables que utilizo para pegar al HTML la informacion de las cards y la tabla
 let tarjetas = "";
 let tabla = "";
+let cantProductos = 0;
+let cantPrendasVestir = 0;
+let cantPedidos = 0;
 let datos = Array();
+//funcion donde se ejecuta el programa
 const imprimir = function () {
     let codigo = document.querySelector("#codigo").value;
     let descripcion = document.querySelector("#descripcion").value;
@@ -213,6 +222,7 @@ const imprimir = function () {
                 </div>
             </div>
             `
+            cantPedidos++
         } else if (cantBodega > cantMnBod) {
             tarjetas += /*html*/
             `
@@ -231,7 +241,7 @@ const imprimir = function () {
             `;
         }
         document.querySelector("#tarjetas").innerHTML = tarjetas;
-
+        //Pegamos las cards de las prendas de vestir al HTML y luego volvemos a limpiar el formulario
         codigo = document.querySelector("#codigo").value = "";
         descripcion = document.querySelector("#descripcion").value = "";
         preCompra = document.querySelector("#preCompra").value = "";
@@ -242,6 +252,8 @@ const imprimir = function () {
         descuento = document.querySelector("#descuento").value = "";
         taPrendas = document.querySelector("#taPrendas").value = "";
         planchado = document.querySelector("#planchado").value = "";
+        cantProductos++
+        cantPrendasVestir++
     } else if (checkCalzado.checked) {
         const objetos = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
         datos.push(objetos);
@@ -266,6 +278,7 @@ const imprimir = function () {
                 </div>
             </div>
             `
+            cantPedidos++
         } else if (cantBodega > cantMnBod) {
             tarjetas += /*html*/
             `
@@ -283,7 +296,7 @@ const imprimir = function () {
             `;
         }
         document.querySelector("#tarjetas").innerHTML = tarjetas;
-
+        //Pegamos las cards del Calzado al HTML y luego volvemos a limpiar el formulario
         codigo = document.querySelector("#codigo").value = "";
         descripcion = document.querySelector("#descripcion").value = "";
         preCompra = document.querySelector("#preCompra").value = "";
@@ -294,12 +307,36 @@ const imprimir = function () {
         descuento = document.querySelector("#descuento").value = "";
         taCalzado = document.querySelector("#taCalzado").value = "";
         planchado = document.querySelector("#planchado").value = "";
-        console.log(datos);
+        cantProductos++
     }
+    console.log(cantPedidos);
+    console.log(cantProductos);
+    console.log(datos);
+    const productoMasBodega = datos.reduce((productoActual, producto) => {
+        if (producto.cantBodega > productoActual.cantBodega) {
+            return producto
+        } else {     
+            return productoActual;
+        }
+    }, datos[0]);
+    console.log(productoMasBodega);
 }
-const productoMasBodega = datos.reduce((productoActual, producto) => {
-    return producto.cantBodega > productoActual.cantBodega ? producto : productoActual;
-}, datos[0]);
-console.log(productoMasBodega);
+const imprimirTabla = function () {
+    tabla += /*html*/
+    `
+    <tr>
+        <td>La cantidad de productos vendidos en el dia fue de: ${cantProductos}</td>
+        <td>Se vendio un total de ${cantPrendasVestir} prendas de vestir durante el dia</td>
+        <td>La cantidad de pedidos realizados por falta de stock fue de: ${cantPedidos}</td>
+        <td>${"pendiente"}</td>
+        <td>${"pendiente"}</td>
+    </tr>
+    `;
+
+    document.querySelector("#table").innerHTML = tabla;
+}
 let boton = document.querySelector("#boton");
 boton.addEventListener("click", imprimir);
+//-----------------------------------------------
+// let botonTabla = document.querySelector("#botonTabla");
+// boton.addEventListener("click", imprimirTabla);

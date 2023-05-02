@@ -1,6 +1,7 @@
 .container-fluid {
-    height: 1000vh;
-    background-color: bisque;
+    height: 300vh;
+    background-color: lightgray;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 #formulario {
     background-color: rgba(94, 93, 93, 0.524);

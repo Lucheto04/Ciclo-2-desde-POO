@@ -18,18 +18,18 @@
 
         <div class="part1">
             <div class="row m-2">
+                <div class="seleccionar d-flex gap-3">
+                    <div class="elegir">
+                        <label for="prVestir">Prendas Vestir</label>
+                        <input type="radio" name="tipoRopa" id="prVestir">
+                    </div>
+                    <div class="elegir">
+                        <label for="calzado">Calzado</label>
+                        <input type="radio" name="tipoRopa" id="calzado">
+                    </div>
+                </div>
                 <div class="col-2" id="formulario">
                     <form action="datos" class="formulario d-flex flex-column ">
-                        <div class="seleccionar d-flex gap-3">
-                            <div class="elegir">
-                                <label for="prVestir">Prendas Vestir</label>
-                                <input type="radio" name="tipoRopa" id="prVestir">
-                            </div>
-                            <div class="elegir">
-                                <label for="calzado">Calzado</label>
-                                <input type="radio" name="tipoRopa" id="calzado">
-                            </div>
-                        </div>
                         <div class="llenarDatos">
                             <label for="codigo">Codigo: </label>
                             <input type="text" class="inputs" name="codigo" id="codigo" placeholder="cd del producto">
@@ -57,16 +57,23 @@
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
-                            <button type="button" class="btn btn-outline-danger m-1" id="boton">Mostrar</button>
+                            <div class="botones d-flex">
+                                <div>
+                                    <button type="button" class="btn btn-outline-dark m-2" id="boton">Cards</button>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-outline-dark m-2" id="botonTabla" onclick="imprimirTabla()">Tabla</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="col">
                     <h2>Tabla estadisticas</h2>
-                    <table class="table table-success table-striped-columns">
+                    <table class="table table-dark table-striped-columns">
                         <thead>
                             <tr>
-                                <th>Vantidad productos</th>
+                                <th>Cantidad productos</th>
                                 <th>Prendas Vestir</th>
                                 <th>Pedidos al proveedor</th>
                                 <th>Calzado del dia</th>
