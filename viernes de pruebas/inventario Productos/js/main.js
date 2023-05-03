@@ -127,9 +127,7 @@ class Producto {
             return false;
     }
 
-    totalPagar () {
-
-    }
+    totalPagar () {}
 
     mostrar () {}
 }
@@ -157,6 +155,79 @@ class PrendasVestir extends Producto {
     get planchado(){
         return this.#planchado
     }
+
+    mostrar () {
+        let codigo = document.querySelector("#codigo").value;
+        let descripcion = document.querySelector("#descripcion").value;
+        let preCompra = document.querySelector("#preCompra").value;
+        let preVenta = document.querySelector("#preVenta").value;
+        let cantBodega = document.querySelector("#cantBodega").value;
+        let cantMnBod = document.querySelector("#cantMnBodega").value;
+        let cantMxInv = document.querySelector("#cantMxInv").value;
+        let descuento = document.querySelector("#descuento").value;
+        let taPrendas = document.querySelector("#taPrendas").value;
+        let taCalzado = document.querySelector("#taCalzado").value;
+        let planchado = document.querySelector("#planchado").value;
+        let checkPrendas = document.querySelector("#prVestir");
+        let checkCalzado = document.querySelector("#calzado");
+        if (checkPrendas.checked) {
+            const objetos = new PrendasVestir(codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
+            datos.push(objetos);
+            let porcDescuento = descuento / 100;
+            let op1 = (cantMxInv - cantBodega) * preCompra;
+            let totalPagar = op1 - (op1 * porcDescuento);
+            console.log(objetos.solPedido());
+            if (cantBodega < cantMnBod) {
+                tarjetas += /*html*/
+                `
+                <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
+                    <div class="card-body">
+                        <h4 class="text-center">Solicitar pedido!!!!</h3>
+                        <p>Tipo: Prendas de Vestir</p>
+                        <p>Codigo: ${codigo}</p>
+                        <p>Descripcion: ${descripcion}</p>
+                        <p>preCompra: ${preCompra}</p>
+                        <p>cantBodega: ${cantBodega}</p>
+                        <p>Cant min Bodega: ${cantMnBod}</p>
+                        <p>Descuento: ${descuento}%</p>
+                        <p>pagar al proveedor: ${totalPagar}</p>
+                    </div>
+                </div>
+                `
+                cantPedidos++
+            } else if (cantBodega > cantMnBod) {
+                tarjetas += /*html*/
+                `
+                <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
+                    <div class="card-body">
+                        <h4 class="text-center">Añadido al carrito</h3>
+                        <p>Tipo: Prendas de Vestir</p>
+                        <p>Codigo: ${codigo}</p>
+                        <p>Descripcion: ${descripcion}</p>
+                        <p>precio compra: ${preCompra}</p>
+                        <p>precio venta: ${preVenta}</p>
+                        <p>Planchado: ${planchado}</p>
+                        <p>Coste: ${preVenta}</p>
+                    </div>
+                </div>
+                `;
+            }
+            document.querySelector("#tarjetas").innerHTML = tarjetas;
+            //Pegamos las cards de las prendas de vestir al HTML y luego volvemos a limpiar el formulario
+            codigo = document.querySelector("#codigo").value = "";
+            descripcion = document.querySelector("#descripcion").value = "";
+            preCompra = document.querySelector("#preCompra").value = "";
+            preVenta = document.querySelector("#preVenta").value = "";
+            cantBodega = document.querySelector("#cantBodega").value = "";
+            cantMnBod = document.querySelector("#cantMnBodega").value = "";
+            cantMxInv = document.querySelector("#cantMxInv").value = "";
+            descuento = document.querySelector("#descuento").value = "";
+            taPrendas = document.querySelector("#taPrendas").value = "";
+            planchado = document.querySelector("#planchado").value = "";
+            cantProductos++
+            cantPrendasVestir++
+        }
+    }
 }
 class Calzado extends Producto {
     #talla
@@ -164,15 +235,86 @@ class Calzado extends Producto {
         super(codigo, descripcion, preCompra, preVenta, cantBod, cantMnBod, cantMxInv, descuento);
         this.#talla = talla;
     }
-
     set talla(newTalla){
         this.#talla = newTalla
     }
-
     get talla(){
         return this.#talla
     }
+    mostrar() {
+        let codigo = document.querySelector("#codigo").value;
+        let descripcion = document.querySelector("#descripcion").value;
+        let preCompra = document.querySelector("#preCompra").value;
+        let preVenta = document.querySelector("#preVenta").value;
+        let cantBodega = document.querySelector("#cantBodega").value;
+        let cantMnBod = document.querySelector("#cantMnBodega").value;
+        let cantMxInv = document.querySelector("#cantMxInv").value;
+        let descuento = document.querySelector("#descuento").value;
+        let taPrendas = document.querySelector("#taPrendas").value;
+        let taCalzado = document.querySelector("#taCalzado").value;
+        let planchado = document.querySelector("#planchado").value;
+        let checkPrendas = document.querySelector("#prVestir");
+        let checkCalzado = document.querySelector("#calzado");
+        if (checkCalzado.checked) {
+            const objetos = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
+            datos.push(objetos);
+            let porcDescuento = descuento / 100;
+            let op1 = (cantMxInv - cantBodega) * preCompra;
+            let totalPagar = op1 - (op1 * porcDescuento);
+            console.log(objetos.solPedido());
+            if (cantBodega < cantMnBod) {
+                tarjetas += /*html*/
+                `
+                <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
+                    <div class="card-body">
+                        <h4 class="text-center">Solicitar pedido!!!!</h3>
+                        <p>Tipo: Calzado</p>
+                        <p>Codigo: ${codigo}</p>
+                        <p>Descripcion: ${descripcion}</p>
+                        <p>preCompra: ${preCompra}</p>
+                        <p>cantBodega: ${cantBodega}</p>
+                        <p>Cant min Bodega: ${cantMnBod}</p>
+                        <p>Descuento: ${descuento}%</p>
+                        <p>pagar al proveedor: ${totalPagar}</p>
+                    </div>
+                </div>
+                `
+                cantPedidos++
+            } else if (cantBodega > cantMnBod) {
+                tarjetas += /*html*/
+                `
+                <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
+                    <div class="card-body">
+                        <h4 class="text-center">Añadido al carrito</h3>
+                        <p>Tipo: Calzado</p>
+                        <p>Codigo: ${codigo}</p>
+                        <p>Descripcion: ${descripcion}</p>
+                        <p>precio compra: ${preCompra}</p>
+                        <p>precio venta: ${preVenta}</p>
+                        <p>Coste: ${preVenta}</p>
+                    </div>
+                </div>
+                `;
+            }
+            let obj1 = new Calzado;
+            obj1 = tarjetas;
+            document.querySelector("#tarjetas").innerHTML = tarjetas;
+            //Pegamos las cards del Calzado al HTML y luego volvemos a limpiar el formulario
+            codigo = document.querySelector("#codigo").value = "";
+            descripcion = document.querySelector("#descripcion").value = "";
+            preCompra = document.querySelector("#preCompra").value = "";
+            preVenta = document.querySelector("#preVenta").value = "";
+            cantBodega = document.querySelector("#cantBodega").value = "";
+            cantMnBod = document.querySelector("#cantMnBodega").value = "";
+            cantMxInv = document.querySelector("#cantMxInv").value = "";
+            descuento = document.querySelector("#descuento").value = "";
+            taCalzado = document.querySelector("#taCalzado").value = "";
+            planchado = document.querySelector("#planchado").value = "";
+            cantProductos++
+        }
+    }
 }
+
 
 // Cierre de las clases
 //------------------------------------------------------------------------------
@@ -184,7 +326,7 @@ let cantPrendasVestir = 0;
 let cantPedidos = 0;
 let datos = Array();
 //funcion donde se ejecuta el programa
-const imprimir = function () {
+/*const imprimir = function () {
     let codigo = document.querySelector("#codigo").value;
     let descripcion = document.querySelector("#descripcion").value;
     let preCompra = document.querySelector("#preCompra").value;
@@ -206,7 +348,7 @@ const imprimir = function () {
         let totalPagar = op1 - (op1 * porcDescuento);
         console.log(objetos.solPedido());
         if (cantBodega < cantMnBod) {
-            tarjetas += /*html*/
+            tarjetas += 
             `
             <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
                 <div class="card-body">
@@ -224,7 +366,7 @@ const imprimir = function () {
             `
             cantPedidos++
         } else if (cantBodega > cantMnBod) {
-            tarjetas += /*html*/
+            tarjetas += 
             `
             <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
                 <div class="card-body">
@@ -262,7 +404,7 @@ const imprimir = function () {
         let totalPagar = op1 - (op1 * porcDescuento);
         console.log(objetos.solPedido());
         if (cantBodega < cantMnBod) {
-            tarjetas += /*html*/
+            tarjetas += 
             `
             <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
                 <div class="card-body">
@@ -280,7 +422,7 @@ const imprimir = function () {
             `
             cantPedidos++
         } else if (cantBodega > cantMnBod) {
-            tarjetas += /*html*/
+            tarjetas += 
             `
             <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
                 <div class="card-body">
@@ -320,7 +462,7 @@ const imprimir = function () {
         
     }, datos[0]);
     console.log(productoMasBodega);
-}
+}*/
 const imprimirTabla = function () {
     tabla += /*html*/
     `
@@ -335,8 +477,12 @@ const imprimirTabla = function () {
 
     document.querySelector("#table").innerHTML = tabla;
 }
+
 let boton = document.querySelector("#boton");
-boton.addEventListener("click", imprimir);
+boton.addEventListener("click",()=>{
+    let obj1 = new Calzado()
+    obj1.mostrar
+});
 //-----------------------------------------------
 // let botonTabla = document.querySelector("#botonTabla");
 // boton.addEventListener("click", imprimirTabla);
