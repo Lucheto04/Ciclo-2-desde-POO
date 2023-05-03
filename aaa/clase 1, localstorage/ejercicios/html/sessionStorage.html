@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--RECUERDA!!!!!!! la diferencia de ambos es que el sessionStorage no mantiene la informacion guardada, RECUERDA EL ZAPATA!!!!-->
+    <div class="contenedor" style="text-align: center;">
+        <h1>Ejemplo - sessionStorage</h1>
+        <div class="seccion1">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+            <br><br>
+            <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+            <br><br>
+            <button type="button" id="guardar">Guardar</button>
+        </div>
+
+        <hr>
+        <div class="seccion2">
+            <label for="nAlmacenado">Nombre almacenado: </label>
+            <input type="text" name="nAlmacenado" id="nAlmacenado" readonly>
+            <br><br>
+            <label for="apAlmacenado">Apellido almacenado: </label>
+            <input type="text" name="apAlmacenado" id="apAlmacenado" readonly>
+            <br><br>
+            <button type="button" id="cargar">Cargar elementos</button>
+        </div>
+        <hr>
+    </div>
+
+    <script>
+        /*
+        let nombre = "";
+        let apellido = "";
+        function guardarInfo () {
+            sessionStorage.setItem("Nombre", document.querySelector("#nombre").value);
+            sessionStorage.setItem("Apellido", document.querySelector("#apellido").value);
+            //console.log(sessionStorage);
+            nombre +=  sessionStorage.Nombre +","+ " " ;
+            apellido += sessionStorage.Apellido +","+ " ";
+            //console.log(nombre + " " + apellido);
+            
+        }
+        //document.querySelector("#guardar").addEventListener("click", guardarInfo);
+
+        const cargarInfo = () => {
+            document.querySelector("#nAlmacenado").value = nombre;
+            document.querySelector("#apAlmacenado").value = apellido;
+        }
+        //document.querySelector("#cargar").addEventListener("click", cargarInfo);
+        //console.log(nombre, apellido);
+        */
+
+
+        //Solucion con vectores a solicitud del profesor
+        let vector = Array()
+        function guardarInfo1 () {
+            sessionStorage.clear();
+            sessionStorage.setItem("Nombre", document.querySelector("#nombre").value);
+            sessionStorage.setItem("Apellido", document.querySelector("#apellido").value);
+
+            vector.push(sessionStorage.Nombre, sessionStorage.Apellido)
+            console.log(vector);
+
+            vector.setItem("vector", JSON.stringify(vector));
+
+            sessionStorage.setItem("Nombre", document.querySelector("#nombre").value);
+            sessionStorage.setItem("Apellido", document.querySelector("#apellido").value);
+        }
+
+        window.addEventListener("load", () => {
+            document.querySelector("#guardar").addEventListener("click", guardarInfo1);
+        })
+
+        const cargarInfo1 = () => {
+            document.querySelector("#nAlmacenado").value += sessionStorage.Nombre + " , ";
+            document.querySelector("#apAlmacenado").value += sessionStorage.Apellido + " , ";
+
+            let newObject = sessionStorage.getItem("datos");
+            console.log(JSON.parse(newObject));
+        }
+        window.addEventListener("load", () => {
+            document.querySelector("#cargar").addEventListener("click", cargarInfo1);
+        })
+
+
+
+
+    </script>
+</body>
+</html>
