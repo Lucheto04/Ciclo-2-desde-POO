@@ -194,7 +194,7 @@ class Calzado extends Producto {
             let porcDescuento = descuento / 100;
             let op1 = (cantMxInv - cantBodega) * preCompra;
             let totalPagar = op1 - (op1 * porcDescuento);
-            console.log(objetos.solPedido());
+            //console.log(objetos.solPedido());
             if (cantBodega < cantMnBod) {
                 tarjetas += /*html*/
                 `
@@ -279,7 +279,7 @@ const imprimir = function () {
         let porcDescuento = descuento / 100;
         let op1 = (cantMxInv - cantBodega) * preCompra;
         let totalPagar = op1 - (op1 * porcDescuento);
-        console.log(objetos.solPedido());
+        //console.log(objetos.solPedido());
         if (cantBodega < cantMnBod) {
             tarjetas += /*html*/
             `
@@ -335,7 +335,7 @@ const imprimir = function () {
         let porcDescuento = descuento / 100;
         let op1 = (cantMxInv - cantBodega) * preCompra;
         let totalPagar = op1 - (op1 * porcDescuento);
-        console.log(objetos.solPedido());
+        //console.log(objetos.solPedido());
         if (cantBodega < cantMnBod) {
             tarjetas += /*html*/
             `
@@ -384,19 +384,19 @@ const imprimir = function () {
         planchado = document.querySelector("#planchado").value = "";
         cantProductos++
     }
-    console.log(cantPedidos);
-    console.log(cantProductos);
-    console.log(datos);
-    const productoMasBodega = datos.reduce((productoActual, producto) => {
-        if (producto.cantBodega > productoActual.cantBodega) {
-            return producto
-        } else     
-            return productoActual;
-    }, datos[0]);
-    console.log(productoMasBodega);
+    //console.log(cantPedidos);
+    //console.log(cantProductos);
+    //console.log(datos);
     /*const productoMasBodega = datos.length > 0 ? datos.reduce((productoActual, producto) => {
         return producto.cantBodega > productoActual.cantBodega ? producto : productoActual;
-      }, datos[0]) : null;*/
+    }, datos[0]) : null;*/
+
+    console.log(datos);    
+    const productoMasBodega = "";
+    for (let i = 0; i < datos.length; i++){
+        if (datos[i].cantBodega > productoMasB)
+            
+    }
 }
 const imprimirTabla = function () {
     tabla += /*html*/
