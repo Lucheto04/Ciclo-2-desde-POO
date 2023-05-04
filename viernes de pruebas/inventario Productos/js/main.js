@@ -380,7 +380,7 @@ const imprimir = function () {
         cantMnBod = document.querySelector("#cantMnBodega").value = "";
         cantMxInv = document.querySelector("#cantMxInv").value = "";
         descuento = document.querySelector("#descuento").value = "";
-        taCalzado = document.querySe lector("#taCalzado").value = "";
+        taCalzado = document.querySelector("#taCalzado").value = "";
         planchado = document.querySelector("#planchado").value = "";
         cantProductos++
     }
