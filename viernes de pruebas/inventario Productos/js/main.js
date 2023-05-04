@@ -156,10 +156,7 @@ class PrendasVestir extends Producto {
         return this.#planchado
     }
 
-    mostrar () {
-        let tarjetas = "";
-
-    }
+    mostrar () {}
 }
 
 class Calzado extends Producto {
@@ -174,78 +171,7 @@ class Calzado extends Producto {
     get talla(){
         return this.#talla
     }
-    mostrar() {
-        let codigo = document.querySelector("#codigo").value;
-        let descripcion = document.querySelector("#descripcion").value;
-        let preCompra = document.querySelector("#preCompra").value;
-        let preVenta = document.querySelector("#preVenta").value;
-        let cantBodega = document.querySelector("#cantBodega").value;
-        let cantMnBod = document.querySelector("#cantMnBodega").value;
-        let cantMxInv = document.querySelector("#cantMxInv").value;
-        let descuento = document.querySelector("#descuento").value;
-        let taPrendas = document.querySelector("#taPrendas").value;
-        let taCalzado = document.querySelector("#taCalzado").value;
-        let planchado = document.querySelector("#planchado").value;
-        let checkPrendas = document.querySelector("#prVestir");
-        let checkCalzado = document.querySelector("#calzado");
-        if (checkCalzado.checked) {
-            const objetos = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
-            datos.push(objetos);
-            let porcDescuento = descuento / 100;
-            let op1 = (cantMxInv - cantBodega) * preCompra;
-            let totalPagar = op1 - (op1 * porcDescuento);
-            //console.log(objetos.solPedido());
-            if (cantBodega < cantMnBod) {
-                tarjetas += /*html*/
-                `
-                <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
-                    <div class="card-body">
-                        <h4 class="text-center">Solicitar pedido!!!!</h3>
-                        <p>Tipo: Calzado</p>
-                        <p>Codigo: ${codigo}</p>
-                        <p>Descripcion: ${descripcion}</p>
-                        <p>preCompra: ${preCompra}</p>
-                        <p>cantBodega: ${cantBodega}</p>
-                        <p>Cant min Bodega: ${cantMnBod}</p>
-                        <p>Descuento: ${descuento}%</p>
-                        <p>pagar al proveedor: ${totalPagar}</p>
-                    </div>
-                </div>
-                `
-                cantPedidos++
-            } else if (cantBodega > cantMnBod) {
-                tarjetas += /*html*/
-                `
-                <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
-                    <div class="card-body">
-                        <h4 class="text-center">Añadido al carrito</h3>
-                        <p>Tipo: Calzado</p>
-                        <p>Codigo: ${codigo}</p>
-                        <p>Descripcion: ${descripcion}</p>
-                        <p>precio compra: ${preCompra}</p>
-                        <p>precio venta: ${preVenta}</p>
-                        <p>Coste: ${preVenta}</p>
-                    </div>
-                </div>
-                `;
-            }
-            let obj1 = new Calzado;
-            obj1 = tarjetas;
-            document.querySelector("#tarjetas").innerHTML = tarjetas;
-            //Pegamos las cards del Calzado al HTML y luego volvemos a limpiar el formulario
-            codigo = document.querySelector("#codigo").value = "";
-            descripcion = document.querySelector("#descripcion").value = "";
-            preCompra = document.querySelector("#preCompra").value = "";
-            preVenta = document.querySelector("#preVenta").value = "";
-            cantBodega = document.querySelector("#cantBodega").value = "";
-            cantMnBod = document.querySelector("#cantMnBodega").value = "";
-            cantMxInv = document.querySelector("#cantMxInv").value = "";
-            descuento = document.querySelector("#descuento").value = "";
-            taCalzado = document.querySelector("#taCalzado").value = "";
-            planchado = document.querySelector("#planchado").value = "";
-            cantProductos++
-        }
-    }
+    mostrar() {}
 }
 
 
@@ -258,6 +184,7 @@ let cantProductos = 0;
 let cantPrendasVestir = 0;
 let cantPedidos = 0;
 let datos = Array();
+console.log(datos[0]);
 //funcion donde se ejecuta el programa
 const imprimir = function () {
     let codigo = document.querySelector("#codigo").value;
@@ -346,6 +273,8 @@ const imprimir = function () {
                     <p>Codigo: ${codigo}</p>
                     <p>Descripcion: ${descripcion}</p>
                     <p>preCompra: ${preCompra}</p>
+                    <p>precio venta: ${preVenta}</p>
+                    <p>Talla: ${taCalzado}</p>
                     <p>cantBodega: ${cantBodega}</p>
                     <p>Cant min Bodega: ${cantMnBod}</p>
                     <p>Descuento: ${descuento}%</p>
@@ -363,9 +292,9 @@ const imprimir = function () {
                     <p>Tipo: Calzado</p>
                     <p>Codigo: ${codigo}</p>
                     <p>Descripcion: ${descripcion}</p>
+                    <p>talla: ${taCalzado}</p>
                     <p>precio compra: ${preCompra}</p>
                     <p>precio venta: ${preVenta}</p>
-                    <p>Coste: ${preVenta}</p>
                 </div>
             </div>
             `;
@@ -387,16 +316,29 @@ const imprimir = function () {
     //console.log(cantPedidos);
     //console.log(cantProductos);
     //console.log(datos);
+    let mayorDato = {};
+    let acumulador = 0;
+
+    datos.map(el => {
+        if(el.cantBod > acumulador) {
+            acumulador = el.cantBod
+            mayorDato = el;
+        }
+    })
+    console.log(datos);
+    console.log(mayorDato);
+
     /*const productoMasBodega = datos.length > 0 ? datos.reduce((productoActual, producto) => {
         return producto.cantBodega > productoActual.cantBodega ? producto : productoActual;
     }, datos[0]) : null;*/
-
-    console.log(datos);    
-    const productoMasBodega = "";
-    for (let i = 0; i < datos.length; i++){
-        if (datos[i].cantBodega > productoMasB)
-            
+    //console.log(datos.cantBod);
+    /*let productoMasB = "";
+    let calzadoDia = -Infinity;
+    for (let i of datos) {
+        if (calzadoDia < datos.cantBod)
+        return calzadoDia = datos.cantBod
     }
+    console.log(productoMasB);*/
 }
 const imprimirTabla = function () {
     tabla += /*html*/
@@ -405,7 +347,7 @@ const imprimirTabla = function () {
         <td>La cantidad de productos vendidos en el dia fue de: ${cantProductos}</td>
         <td>Se vendio un total de ${cantPrendasVestir} prendas de vestir durante el dia</td>
         <td>La cantidad de pedidos realizados por falta de stock fue de: ${cantPedidos}</td>
-        <td>${"pendiente"}</td>
+        <td>${mayorDato}</td>
         <td>${"pendiente"}</td>
     </tr>
     `;
