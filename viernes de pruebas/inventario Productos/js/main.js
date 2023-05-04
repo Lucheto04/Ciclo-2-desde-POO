@@ -380,7 +380,7 @@ const imprimir = function () {
         cantMnBod = document.querySelector("#cantMnBodega").value = "";
         cantMxInv = document.querySelector("#cantMxInv").value = "";
         descuento = document.querySelector("#descuento").value = "";
-        taCalzado = document.querySelector("#taCalzado").value = "";
+        taCalzado = document.querySe lector("#taCalzado").value = "";
         planchado = document.querySelector("#planchado").value = "";
         cantProductos++
     }
@@ -392,9 +392,11 @@ const imprimir = function () {
             return producto
         } else     
             return productoActual;
-        
     }, datos[0]);
     console.log(productoMasBodega);
+    /*const productoMasBodega = datos.length > 0 ? datos.reduce((productoActual, producto) => {
+        return producto.cantBodega > productoActual.cantBodega ? producto : productoActual;
+      }, datos[0]) : null;*/
 }
 const imprimirTabla = function () {
     tabla += /*html*/
