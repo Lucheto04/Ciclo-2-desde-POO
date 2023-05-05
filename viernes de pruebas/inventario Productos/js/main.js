@@ -180,11 +180,11 @@ class Calzado extends Producto {
 // Contadores y variables que utilizo para pegar al HTML la informacion de las cards y la tabla
 let tarjetas = "";
 let tabla = "";
+let mayorCalzado = {};
 let cantProductos = 0;
 let cantPrendasVestir = 0;
 let cantPedidos = 0;
 let datos = Array();
-console.log(datos[0]);
 //funcion donde se ejecuta el programa
 const imprimir = function () {
     let codigo = document.querySelector("#codigo").value;
@@ -325,8 +325,7 @@ const imprimir = function () {
             mayorDato = el;
         }
     })
-    console.log(datos);
-    console.log(mayorDato);
+    //console.log(mayorDato);
 
     /*const productoMasBodega = datos.length > 0 ? datos.reduce((productoActual, producto) => {
         return producto.cantBodega > productoActual.cantBodega ? producto : productoActual;
@@ -339,7 +338,10 @@ const imprimir = function () {
         return calzadoDia = datos.cantBod
     }
     console.log(productoMasB);*/
+    console.log(datos);
+    console.log(mayorDato);
 }
+
 const imprimirTabla = function () {
     tabla += /*html*/
     `
