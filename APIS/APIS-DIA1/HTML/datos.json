@@ -1,0 +1,26 @@
+[
+	{
+		"NOMBRE": "Carlos",
+		"EQUIPO": "Apolo",
+		"EDAD": "22",
+		"SEXO": "M"
+	},
+	{
+		"NOMBRE": "Diana",
+		"EQUIPO": "Artemis",
+		"EDAD": "18",
+		"SEXO": "F"
+	},
+	{
+		"NOMBRE": "Teofilo",
+		"EQUIPO": "Sputnik",
+		"EDAD": "21",
+		"SEXO": "M"
+	},
+	{
+		"NOMBRE": "Oscar",
+		"EQUIPO": "Apolo",
+		"EDAD": "18",
+		"SEXO": "M"
+	}
+]

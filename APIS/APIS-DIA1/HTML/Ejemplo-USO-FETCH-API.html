@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo-USO-FETCH-API</title>
+    <script src="../js/main.js" type="module" defer></script>
+    <style>
+        table {
+            width: 35%;
+        }
+
+        #tblEdad, #tblImg{
+            text-align: center;
+        }
+
+        img {
+            width: 36px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-cemter">Ejemplo-USO-FETCH-API</h1>
+
+    <button id="btnTexto">Cargar Texto</button>
+    <div id="cargarTxt"></div>
+    <hr>
+    <hr>
+    <button id="btnJson">Cargar JSON</button>
+    <div id="cargarJson">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>EQUIPO</th>
+                    <th>EDAD</th>
+                    <th>FOTO</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
