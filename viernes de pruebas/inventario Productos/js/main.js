@@ -156,7 +156,24 @@ class PrendasVestir extends Producto {
         return this.#planchado
     }
 
-    mostrar () {}
+    mostrar (soli) {
+        tarjetas += /*html*/
+            `
+            <div class="card ms-3 mt-6 col-2" style="background-color: ${soli ? "gray" : "white" };">
+                <div class="card-body">
+                    <h4 class="text-center">Solicitar pedido!!!!</h3>
+                    <p>Tipo: Prendas de Vestir</p>
+                    <p>Codigo: ${codigo}</p>
+                    <p>Descripcion: ${descripcion}</p>
+                    <p>preCompra: ${preCompra}</p>
+                    <p>cantBodega: ${cantBodega}</p>
+                    <p>Cant min Bodega: ${cantMnBod}</p>
+                    <p>Descuento: ${descuento}%</p>
+                    <p>pagar al proveedor: ${totalPagar}</p>
+                </div>
+            </div>
+            `
+    }
 }
 
 class Calzado extends Producto {
@@ -200,48 +217,20 @@ const imprimir = function () {
     let planchado = document.querySelector("#planchado").value;
     let checkPrendas = document.querySelector("#prVestir");
     let checkCalzado = document.querySelector("#calzado");
+
     if (checkPrendas.checked) {
-        const objetos = new PrendasVestir(codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
-        datos.push(objetos);
+        const prenda = new PrendasVestir(codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taPrendas, planchado);
+        let soli =prenda.solPedido();
+        console.log(soli);
+        prenda.mostrar(soli);
+        datos.push(prenda);  
         let porcDescuento = descuento / 100;
         let op1 = (cantMxInv - cantBodega) * preCompra;
         let totalPagar = op1 - (op1 * porcDescuento);
-        //console.log(objetos.solPedido());
+        //console.log(prenda.solPedido());
         if (cantBodega < cantMnBod) {
-            tarjetas += /*html*/
-            `
-            <div class="card ms-3 mt-6 col-2" style="background-color: gray;">
-                <div class="card-body">
-                    <h4 class="text-center">Solicitar pedido!!!!</h3>
-                    <p>Tipo: Prendas de Vestir</p>
-                    <p>Codigo: ${codigo}</p>
-                    <p>Descripcion: ${descripcion}</p>
-                    <p>preCompra: ${preCompra}</p>
-                    <p>cantBodega: ${cantBodega}</p>
-                    <p>Cant min Bodega: ${cantMnBod}</p>
-                    <p>Descuento: ${descuento}%</p>
-                    <p>pagar al proveedor: ${totalPagar}</p>
-                </div>
-            </div>
-            `
             cantPedidos++
-        } else if (cantBodega > cantMnBod) {
-            tarjetas += /*html*/
-            `
-            <div class="card ms-3 mt-6 col-2" style="border: 1px solid black;">
-                <div class="card-body">
-                    <h4 class="text-center">Añadido al carrito</h3>
-                    <p>Tipo: Prendas de Vestir</p>
-                    <p>Codigo: ${codigo}</p>
-                    <p>Descripcion: ${descripcion}</p>
-                    <p>precio compra: ${preCompra}</p>
-                    <p>precio venta: ${preVenta}</p>
-                    <p>Planchado: ${planchado}</p>
-                    <p>Coste: ${preVenta}</p>
-                </div>
-            </div>
-            `;
-        }
+        } 
         document.querySelector("#tarjetas").innerHTML = tarjetas;
         //Pegamos las cards de las prendas de vestir al HTML y luego volvemos a limpiar el formulario
         codigo = document.querySelector("#codigo").value = "";
@@ -257,12 +246,12 @@ const imprimir = function () {
         cantProductos++
         cantPrendasVestir++
     } else if (checkCalzado.checked) {
-        const objetos = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
-        datos.push(objetos);
+        const prenda = new Calzado (codigo, descripcion, preCompra, preVenta, cantBodega, cantMnBod, cantMxInv, descuento, taCalzado, planchado);
+        datos.push(prenda);
         let porcDescuento = descuento / 100;
         let op1 = (cantMxInv - cantBodega) * preCompra;
         let totalPagar = op1 - (op1 * porcDescuento);
-        //console.log(objetos.solPedido());
+        //console.log(prenda.solPedido());
         if (cantBodega < cantMnBod) {
             tarjetas += /*html*/
             `
@@ -349,7 +338,7 @@ const imprimirTabla = function () {
         <td>La cantidad de productos vendidos en el dia fue de: ${cantProductos}</td>
         <td>Se vendio un total de ${cantPrendasVestir} prendas de vestir durante el dia</td>
         <td>La cantidad de pedidos realizados por falta de stock fue de: ${cantPedidos}</td>
-        <td>${mayorDato}</td>
+        <td>${"pendiente"}</td>
         <td>${"pendiente"}</td>
     </tr>
     `;
