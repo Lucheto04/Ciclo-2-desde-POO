@@ -18,4 +18,3 @@ const fetchData = async () => {
         console.log(TienesUnError);
     }
 }
-aaa
