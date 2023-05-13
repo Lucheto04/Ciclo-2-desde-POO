@@ -1,0 +1,24 @@
+{
+  "skills": [
+    {
+      "id": "1",
+      "nombre": "aa"
+    },
+    {
+      "id": "2",
+      "nombre": "bb"
+    },
+    {
+      "id": "3",
+      "nombre": "ee"
+    },
+    {
+      "id": "4",
+      "nombre": "ss"
+    }
+  ],
+  "moduloSkills": [],
+  "teams": [],
+  "reclutas": [],
+  "evaluacion": []
+}
